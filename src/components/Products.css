@@ -1,0 +1,35 @@
+section {
+  --dark-purple: rgb(67, 67, 149);
+  --white-purple: rgb(123, 123, 201);
+  display: flex;
+}
+
+section:first-child {
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+section>button {
+  background-color: var(--dark-purple);
+  color: white;
+}
+
+section>button:hover {
+  background-color: var(--white-purple);
+}
+
+section:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+article {
+  flex: 1 0 calc(25% - 2rem);
+  margin-top: 2rem;
+  border: ;
+}
+
+article>img {
+  width: 9rem;
+}

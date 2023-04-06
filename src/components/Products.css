@@ -12,7 +12,7 @@ section {
 
 section:first-child {
   justify-content: space-between;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 }
 
 section>button {

@@ -13,7 +13,12 @@ function Products({ products, promotions }: ProductsProp) {
 
   function calculateDiscount(price: number, discount: number) {
     const total = price - discount;
-    return total < 0 ? price : total;
+    const discounted = total > 0;
+
+    return {
+      price: discounted ? total : price,
+      discounted,
+    };
   }
 
   const productList = !isPromotionApplied
@@ -25,12 +30,11 @@ function Products({ products, promotions }: ProductsProp) {
 
         return {
           ...product,
-          ...(foundPromotion && {
-            price: calculateDiscount(
+          ...(foundPromotion &&
+            calculateDiscount(
               product.price,
               foundPromotion.discount
-            ),
-          }),
+            )),
         };
       });
 
@@ -45,9 +49,17 @@ function Products({ products, promotions }: ProductsProp) {
       <section>
         {productList.map((product) => (
           <article key={product.id}>
-            <img src={product.image} alt={product.title} />
+            <div>
+              <img src={product.image} alt={product.title} />
+              {product.discounted && <span>Special Offer</span>}
+            </div>
             <p>{product.title}</p>
-            <p>{product.price}</p>
+            <p>
+              {Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(product.price)}
+            </p>
           </article>
         ))}
       </section>
